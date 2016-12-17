@@ -26,15 +26,15 @@ window.onload = function() {
     game.isStart = false; // ゲーム開始フラグ
 
     game.preload(
-        // スタート、エンド 
+        // スタート、エンド
         'start.png', 'end.png',
-        // ボタン 
+        // ボタン
         'button.png',
-        // マップ 
+        // マップ
         'map1.png',
-        // キャラ 
+        // キャラ
         'chara0.png', 'chara5.png', 'chara6.png',
-        // アバター 
+        // アバター
         'avatarBg1.png','avatarBg2.png','avatarBg3.png','avatarPlayer1.gif',
         // モンスター
         'monster/monster1.gif', 'monster/monster2.gif',
@@ -89,7 +89,7 @@ window.onload = function() {
         var enemiesCnt = 0; // 敵の数
         var enemies = [];   // 敵を入れる配列
         game.rootScene.enemies = enemies;
-        
+
         // サウンドの設定
         game.bgmSD = game.assets['sounds/bgm08.wav'];
         game.battleSD = game.assets['sounds/se4.wav'];
@@ -100,7 +100,7 @@ window.onload = function() {
         game.talkYesSD = game.assets['sounds/lock1.wav'];
         game.talkNoSD = game.assets['sounds/lock2.wav'];
         game.recoverSD = game.assets['sounds/se6.wav'];
-        
+
         // rootSceneの「enterframe」イベントリスナ
         game.rootScene.addEventListener('enterframe', function(e) {
             // BGMのくりかえし
@@ -160,7 +160,7 @@ window.onload = function() {
                     // 敵の数を1ずつ足す
                     enemiesCnt++;
                     // 現在のフレーム数をキーに設定する 配列の中で敵の区別がつくようにするため
-                    // たとえば、プレイヤーが敵を倒した時、どの敵を消滅させるかを選ぶ時に役に立つ 
+                    // たとえば、プレイヤーが敵を倒した時、どの敵を消滅させるかを選ぶ時に役に立つ
                     enemy.key = game.frame;
                     // 敵を配列に入れる
                     enemies[enemy.key] = enemy;
@@ -306,7 +306,7 @@ window.onload = function() {
                     // 敵の数を1ずつカウント
                     enemiesCnt ++;
                     // 現在のフレーム数をキーに設定する 配列の中で敵の区別がつくようにするため
-                    // たとえば、プレイヤーが敵を倒した時、どの敵を消滅させるかを選ぶ時に役に立つ 
+                    // たとえば、プレイヤーが敵を倒した時、どの敵を消滅させるかを選ぶ時に役に立つ
                     enemy.key = game.frame;
                     // 敵を配列に入れる
                     enemies[enemy.key] = enemy;
@@ -364,7 +364,7 @@ window.onload = function() {
 
         // シーンの背景を白色にする 上下の余白を消すため
         scene.backgroundColor="#FFFFFF";
-        
+
         // アバターの背景を作る
         bg = new AvatarBG(1);
         bg.y = 50;
@@ -387,7 +387,7 @@ window.onload = function() {
         monsterEnemy.coin = monster.coin;               // プレイヤーがゲットするコイン
         monsterEnemy.drop = monster.drop;               // ドロップするアイテム
         monsterEnemy.no = no;                           // 種類
-        monsterEnemy.vx = -8;                           // 移動量  
+        monsterEnemy.vx = -8;                           // 移動量
         monsterEnemy.lost = false;                      // 消滅フラグ
         monsterEnemy.action = 'appear'                  // アクション
         scene.addChild(monsterEnemy);
@@ -430,7 +430,7 @@ window.onload = function() {
             } else if (this.action === "stop" && battlePlayer.action === "stop") {
                 // stopになるまでwait
                 this.action = "walk";
-            } 
+            }
 
             // モンスターのx座標が「200」以上の場合
             if (this.x >= 200) {
@@ -531,7 +531,7 @@ window.onload = function() {
                     this.isMoving = true;
 
                     // 右向きにする
-                    this.vx = 8; 
+                    this.vx = 8;
 
                     // 攻撃モードなら
                 } else if (this.action === "stop" && monsterEnemy.action === "stop" && this.x > 100) {
@@ -541,8 +541,8 @@ window.onload = function() {
                     // プレイヤを「run」アクション
                     this.action = "run";
                     // 左向きにする
-                    this.vx = -8; 
-                } 
+                    this.vx = -8;
+                }
             } else {
                 if (scene.childNodes.indexOf(monsterEnemy) === -1) {
                     game.monsterLostSD.play();
@@ -656,8 +656,8 @@ var TapButton = enchant.Class.create(enchant.Sprite, {
         this.image = game.assets['button.png'];
         this.x = x;
         this.y = y;
-        this.buttonMode = mode; 
-        this.scale(0.8, 0.8); // 大きさの倍率 
+        this.buttonMode = mode;
+        this.scale(0.8, 0.8); // 大きさの倍率
     }
 });
 
@@ -752,7 +752,7 @@ var Enemy = enchant.Class.create(enchant.Sprite, {
         // 敵の種類は 0 か 1
         this.kind = kind;
         // 3 をかけると 0 列目 か 3 列目 かが基準になる そこから向きによって 何行目かを選ぶ
-        this.frame = this.kind * 3; 
+        this.frame = this.kind * 3;
 
         // 「enterframe」イベントリスナ
         this.addEventListener('enterframe', function() {
@@ -775,19 +775,19 @@ var Enemy = enchant.Class.create(enchant.Sprite, {
                 this.vx = this.vy = 0;
                 this.mov = rand(4);
                 switch (this.mov) {
-                    case 0: 
+                    case 0:
                         this.direction = 0;
                         this.vy = 4;
                         break;
-                    case 1: 
+                    case 1:
                         this.direction = 2;
                         this.vx = -4;
                         break;
-                    case 2: 
+                    case 2:
                         this.direction = 4;
                         this.vx = 4;
                         break;
-                    case 3: 
+                    case 3:
                         this.direction = 6;
                         this.vy = -4;
                         break;
@@ -796,7 +796,7 @@ var Enemy = enchant.Class.create(enchant.Sprite, {
                 // プレイヤーを追いかける処理
 
                 // 自身のxy軸線上に今のシーンのプレイヤーいたら、その方向に移動方向設定する
-                var player = game.currentScene.player; 
+                var player = game.currentScene.player;
                 if (this.x > player.x && this.y === player.y) {
                     this.direction = 2;
                     this.vx = -4;
@@ -879,19 +879,19 @@ var Npc = enchant.Class.create(enchant.Sprite, {
                 this.vx = this.vy = 0;
                 this.mov = rand(4);
                 switch (this.mov) {
-                    case 0: 
+                    case 0:
                         this.direction = 0;
                         this.vy = 4;
                         break;
-                    case 1: 
+                    case 1:
                         this.direction = 1;
                         this.vx = -4;
                         break;
-                    case 2: 
+                    case 2:
                         this.direction = 2;
                         this.vx = 4;
                         break;
-                    case 3: 
+                    case 3:
                         this.direction = 3;
                         this.vy = -4;
                         break;
@@ -959,10 +959,10 @@ var monstorTable = {
 
 var playerStatus = {
     lv: 1,         // レベル どこでレベルアップしたらいいか？
-    hp: 12,      // 現在HP
-    hpMax: 12,   // 最大HP
+    hp: 100,      // 現在HP
+    hpMax: 100,   // 最大HP
     exp: 0,        // 経験値 どこで増やすか？
-    attack: 1,     // 攻撃力
+    attack: 5,     // 攻撃力
     coin: 0,       // コイン
     weapon: 0,     // 武器
 }
@@ -1121,7 +1121,7 @@ var home = {
         [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
         [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
     ]
-} 
+}
 
 // 公園のマップデータ
 var park = {
@@ -1221,4 +1221,4 @@ var park = {
         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     ]
-} 
+}
