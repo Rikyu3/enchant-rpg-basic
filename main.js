@@ -138,7 +138,10 @@ window.onload = function() {
             stage.x = x;
             stage.y = y;
             // プレイヤーを画面の下端に移動すると、ルートシーンからフィールドへシーンを切り替える
-            if (player.y > 445) game.pushScene(game.park(player.x, player.y));
+            if (player.y > 445) {
+              game.pushScene(game.park(player.x, player.y));
+              player.y = player.y - 20;
+            }
 
             // woodsKeeperに近づいて(48ピクセル以内)、「a」ボタンを押すと、
             if (woodsKeeper.within(player, 48) && game.input.a) { // withinは当たり判定に距離を指定できる
@@ -654,6 +657,7 @@ var TapButton = enchant.Class.create(enchant.Sprite, {
     initialize: function(x, y, mode) {
         enchant.Sprite.call(this, 50, 50);
         this.image = game.assets['button.png'];
+        this.frame = 20;
         this.x = x;
         this.y = y;
         this.buttonMode = mode;
