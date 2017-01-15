@@ -962,7 +962,7 @@ var playerStatus = {
     hp: 100,      // 現在HP
     hpMax: 100,   // 最大HP
     exp: 0,        // 経験値 どこで増やすか？
-    attack: 5,     // 攻撃力
+    attack: 80,     // 攻撃力
     coin: 0,       // コイン
     weapon: 0,     // 武器
 }
